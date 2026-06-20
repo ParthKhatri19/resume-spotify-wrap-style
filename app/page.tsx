@@ -204,19 +204,21 @@ function ExperienceSlide() {
           Your Journey
         </p>
 
-        <div style={{ animation: "scaleIn 0.6s ease-out 0.2s both" }}>
-          <span className="text-[80px] sm:text-[120px] md:text-[180px] font-black text-white leading-none">4+</span>
+        <div style={{ animation: "bounceIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both" }}>
+          <span className="stat-glow text-[80px] sm:text-[120px] md:text-[180px] font-black text-white leading-none">
+            4+
+          </span>
         </div>
 
-        <div style={{ animation: "slideUp 0.6s ease-out 0.4s both" }} className="space-y-2">
+        <div style={{ animation: "slideUp 0.6s ease-out 0.55s both" }} className="space-y-1">
           <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
             Years of shipping<br />
-            <span className="text-yellow-300">real products</span>
+            <span className="text-yellow-300 shimmer-text">real products</span>
           </p>
         </div>
 
-        <div style={{ animation: "slideUp 0.6s ease-out 0.6s both" }} className="flex flex-col items-center gap-4">
-          <div className="bg-white/20 backdrop-blur-sm border border-white/20 rounded-2xl px-6 sm:px-8 py-4 sm:py-5 text-center">
+        <div style={{ animation: "slideUp 0.6s ease-out 0.75s both" }} className="flex flex-col items-center gap-4">
+          <div className="tap-card bg-white/20 backdrop-blur-sm border border-white/20 rounded-2xl px-6 sm:px-8 py-4 sm:py-5 text-center">
             <p className="text-white font-bold text-base sm:text-lg">Sr. Software Engineer</p>
             <p className="text-white/70 text-sm mt-1">Ahmedabad, Gujarat</p>
             <p className="text-yellow-300 text-sm font-semibold mt-1">Jan 2022 → Present</p>
@@ -339,14 +341,18 @@ function ProjectsSlide() {
       style={{ background: "linear-gradient(160deg, #111827 0%, #1f2937 100%)" }}
     >
       <div
-        className="blob-2 absolute w-96 h-96 rounded-full opacity-20 -bottom-20 -left-20"
+        className="blob-1 absolute w-72 h-72 rounded-full opacity-25 -top-10 -right-10"
         style={{ background: "radial-gradient(circle, #f97316 0%, transparent 70%)" }}
+      />
+      <div
+        className="blob-2 absolute w-96 h-96 rounded-full opacity-15 -bottom-20 -left-20"
+        style={{ background: "radial-gradient(circle, #fb923c 0%, transparent 70%)" }}
       />
 
       <div className="relative z-10 w-full max-w-md px-5 sm:px-6 flex flex-col gap-5">
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }} className="text-center">
           <p className="text-orange-400 text-xs font-bold tracking-[0.3em] uppercase mb-2">Projects Shipped</p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
             3 products.<br />
             <span className="text-orange-400">Real impact.</span>
           </h2>
@@ -356,20 +362,28 @@ function ProjectsSlide() {
           {projects.map((p, i) => (
             <div
               key={p.name}
-              className="project-card bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-3"
-              style={{ animation: `slideUp 0.5s ease-out ${0.2 + i * 0.15}s both` }}
+              className="project-card border rounded-2xl p-4 flex flex-col gap-2"
+              style={{
+                background: `${p.color}0d`,
+                borderColor: `${p.color}30`,
+                animation: `slideInLeft 0.5s cubic-bezier(0.22,1,0.36,1) ${0.2 + i * 0.12}s both`,
+              }}
             >
-              <div className="text-2xl sm:text-3xl shrink-0">{p.icon}</div>
-              <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-sm leading-tight">{p.name}</p>
-                <p className="text-white/40 text-xs mt-0.5 truncate">{p.tools}</p>
+              {/* Row 1 – icon + full name */}
+              <div className="flex items-center gap-3">
+                <span className="text-2xl w-8 text-center shrink-0">{p.icon}</span>
+                <p className="text-white font-bold text-sm leading-snug">{p.name}</p>
               </div>
-              <span
-                className="text-xs font-semibold px-2 py-1 rounded-full shrink-0 whitespace-nowrap"
-                style={{ backgroundColor: `${p.color}20`, color: p.color, border: `1px solid ${p.color}40` }}
-              >
-                {p.tag}
-              </span>
+              {/* Row 2 – tech stack + tag badge */}
+              <div className="flex items-center justify-between gap-2 pl-11">
+                <p className="text-white/45 text-xs leading-snug">{p.tools}</p>
+                <span
+                  className="text-xs font-bold px-2.5 py-1 rounded-full shrink-0 whitespace-nowrap"
+                  style={{ backgroundColor: `${p.color}25`, color: p.color, border: `1px solid ${p.color}50` }}
+                >
+                  {p.tag}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -413,12 +427,14 @@ function CertificationsSlide() {
           {certs.map((c, i) => (
             <div
               key={c.name}
-              className={`flex items-center gap-3 rounded-xl p-2.5 sm:p-3 ${
+              className={`tap-card flex items-center gap-3 rounded-xl p-2.5 sm:p-3 ${
                 c.highlight
                   ? "bg-sky-400/20 border border-sky-400/40"
                   : "bg-white/5 border border-white/10"
               }`}
-              style={{ animation: `slideUp 0.5s ease-out ${0.2 + i * 0.1}s both` }}
+              style={{
+                animation: `${i % 2 === 0 ? "slideInLeft" : "slideInRight"} 0.5s cubic-bezier(0.22,1,0.36,1) ${0.2 + i * 0.08}s both`,
+              }}
             >
               <span className="text-lg sm:text-xl">{c.icon}</span>
               <div className="flex-1 min-w-0">
@@ -511,11 +527,11 @@ function TechArsenalSlide() {
           {arsenal.map((group, i) => (
             <div
               key={group.category}
-              className="rounded-xl p-2.5 sm:p-3 flex flex-col gap-1.5"
+              className="tap-card rounded-xl p-2.5 sm:p-3 flex flex-col gap-1.5"
               style={{
                 background: group.bg,
                 border: `1px solid ${group.border}`,
-                animation: `slideUp 0.5s ease-out ${0.15 + i * 0.08}s both`,
+                animation: `${i % 2 === 0 ? "slideInLeft" : "slideInRight"} 0.5s cubic-bezier(0.22,1,0.36,1) ${0.15 + i * 0.08}s both`,
               }}
             >
               <p className="text-xs font-black tracking-wider uppercase" style={{ color: group.color }}>
@@ -564,11 +580,12 @@ function ContactSlide() {
           </h2>
         </div>
 
-        <div style={{ animation: "slideUp 0.6s ease-out 0.4s both" }} className="flex flex-col gap-3 w-full max-w-xs sm:max-w-sm">
+        <div className="flex flex-col gap-3 w-full max-w-xs sm:max-w-sm">
           <a
             href="mailto:parth55610@gmail.com"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            className="tap-card flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            style={{ animation: "slideInLeft 0.6s cubic-bezier(0.22,1,0.36,1) 0.4s both" }}
           >
             <span className="text-2xl">📧</span>
             <div className="min-w-0">
@@ -580,7 +597,8 @@ function ContactSlide() {
           <a
             href="tel:+919429913616"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            className="tap-card flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            style={{ animation: "slideInRight 0.6s cubic-bezier(0.22,1,0.36,1) 0.55s both" }}
           >
             <span className="text-2xl">📱</span>
             <div>

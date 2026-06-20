@@ -20,33 +20,15 @@ body {
   }
 }
 
-/* Slide transitions */
-.slide-enter {
-  opacity: 0;
-  transform: translateY(60px) scale(0.96);
-}
-
-.slide-enter-active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.slide-exit {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.slide-exit-active {
-  opacity: 0;
-  transform: translateY(-40px) scale(0.98);
-  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
-}
-
-/* Core keyframes used via inline style animation property */
+/* ── Core entrance keyframes ─────────────────────────────────── */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeIn {
@@ -55,16 +37,127 @@ body {
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.8); }
+  from { opacity: 0; transform: scale(0.75); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* Elastic pop for big stat numbers */
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: scale(0.35); }
+  55%  { opacity: 1; transform: scale(1.08); }
+  75%  { transform: scale(0.96); }
+  90%  { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-/* Noise texture overlay */
+/* Slide in from right (for alternating card stagger) */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Shimmer text ─────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, currentColor 25%, rgba(255,255,255,0.85) 50%, currentColor 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2.4s linear infinite;
+}
+
+/* ── Floating blobs (organic movement) ───────────────────────── */
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30%  { transform: translate(40px, -28px) scale(1.08); }
+  60%  { transform: translate(-28px, 16px) scale(0.94); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35%  { transform: translate(-32px, 20px) scale(1.1); }
+  70%  { transform: translate(24px, -30px) scale(0.92); }
+}
+
+.blob-1 { animation: float1 7s ease-in-out infinite; }
+.blob-2 { animation: float2 9s ease-in-out infinite; }
+
+/* ── Project cards ────────────────────────────────────────────── */
+.project-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.project-card:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.project-card:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+}
+
+/* ── Contact / cert cards tap feedback ───────────────────────── */
+.tap-card {
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tap-card:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
+}
+
+/* ── Glow pulse (applied to the experience stat) ─────────────── */
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(255,255,255,0.15)); }
+  50%       { filter: drop-shadow(0 0 40px rgba(255,255,255,0.40)); }
+}
+
+.stat-glow {
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+/* ── Skill bar (Languages slide) ─────────────────────────────── */
+@keyframes growWidth {
+  from { width: 0; }
+  to   { width: var(--target-width); }
+}
+
+.skill-bar {
+  animation: growWidth 1.2s ease-out forwards;
+  animation-delay: var(--delay, 0s);
+  width: 0;
+}
+
+/* ── Ping-slow (cert dots) ───────────────────────────────────── */
+@keyframes ping-slow {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.ping-slow {
+  animation: ping-slow 1.8s ease-out infinite;
+}
+
+/* ── Pulse dots (IntroSlide) ─────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { transform: scale(1);   opacity: 1;   }
+  50%       { transform: scale(1.5); opacity: 0.4; }
+}
+
+/* ── Progress bar segments ───────────────────────────────────── */
+.progress-segment {
+  transition: background-color 0.3s ease;
+}
+
+/* ── Noise overlay ───────────────────────────────────────────── */
 .noise::before {
   content: "";
   position: absolute;
@@ -75,83 +168,10 @@ body {
   z-index: 1;
 }
 
-/* Shimmer animation for stats */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.shimmer-text {
-  background: linear-gradient(90deg, currentColor 25%, rgba(255,255,255,0.8) 50%, currentColor 75%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-/* Progress bar */
-.progress-segment {
-  transition: background-color 0.3s ease;
-}
-
-/* Floating blobs */
-@keyframes float1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 10px) scale(0.95); }
-}
-
-@keyframes float2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-25px, 15px) scale(1.08); }
-  66% { transform: translate(20px, -25px) scale(0.92); }
-}
-
-.blob-1 { animation: float1 8s ease-in-out infinite; }
-.blob-2 { animation: float2 10s ease-in-out infinite; }
-
-/* Skill bar animation */
-@keyframes growWidth {
-  from { width: 0; }
-  to { width: var(--target-width); }
-}
-
-.skill-bar {
-  animation: growWidth 1.2s ease-out forwards;
-  animation-delay: var(--delay, 0s);
-  width: 0;
-}
-
-/* Card hover effects */
-.project-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-}
-
-/* Pulse ring */
-@keyframes ping-slow {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-.ping-slow {
-  animation: ping-slow 2s ease-out infinite;
-}
-
-/* Stagger animations */
+/* ── Stagger helpers ─────────────────────────────────────────── */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
-
-/* Pulse dots (used in IntroSlide) */
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.5; }
-}
