@@ -135,7 +135,7 @@ function IntroSlide() {
         style={{ background: "radial-gradient(circle, #9333ea 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 flex flex-col items-center gap-6 px-8 text-center">
+      <div className="relative z-10 flex flex-col items-center gap-5 px-6 text-center">
         <div
           className="bg-[#1DB954] text-black text-xs font-black tracking-[0.3em] uppercase px-4 py-2 rounded-full"
           style={{ animation: "scaleIn 0.5s ease-out 0.1s both" }}
@@ -144,11 +144,11 @@ function IntroSlide() {
         </div>
 
         <div style={{ animation: "slideUp 0.6s ease-out 0.3s both" }}>
-          <h1 className="text-7xl md:text-9xl font-black text-white leading-none tracking-tight">
+          <h1 className="text-6xl sm:text-7xl md:text-9xl font-black text-white leading-none tracking-tight">
             Parth
           </h1>
           <h1
-            className="text-7xl md:text-9xl font-black leading-none tracking-tight"
+            className="text-6xl sm:text-7xl md:text-9xl font-black leading-none tracking-tight"
             style={{ color: "#1DB954" }}
           >
             Khatri
@@ -156,13 +156,13 @@ function IntroSlide() {
         </div>
 
         <div style={{ animation: "slideUp 0.6s ease-out 0.5s both" }}>
-          <p className="text-white/70 text-xl md:text-2xl font-light tracking-wider">
+          <p className="text-white/70 text-lg sm:text-xl md:text-2xl font-light tracking-wider">
             Sr. Software Engineer
           </p>
         </div>
 
         <div style={{ animation: "fadeIn 0.8s ease-out 0.8s both" }}>
-          <p className="text-white/40 text-sm md:text-base max-w-sm leading-relaxed">
+          <p className="text-white/40 text-sm md:text-base max-w-xs sm:max-w-sm leading-relaxed">
             4+ years of building production software.<br />Here&apos;s how the story goes.
           </p>
         </div>
@@ -196,7 +196,7 @@ function ExperienceSlide() {
         }}
       />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-8 gap-8">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 gap-5 sm:gap-8">
         <p
           className="text-white/60 text-sm font-semibold tracking-[0.3em] uppercase"
           style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}
@@ -205,19 +205,19 @@ function ExperienceSlide() {
         </p>
 
         <div style={{ animation: "scaleIn 0.6s ease-out 0.2s both" }}>
-          <span className="text-[120px] md:text-[180px] font-black text-white leading-none">4+</span>
+          <span className="text-[80px] sm:text-[120px] md:text-[180px] font-black text-white leading-none">4+</span>
         </div>
 
         <div style={{ animation: "slideUp 0.6s ease-out 0.4s both" }} className="space-y-2">
-          <p className="text-4xl md:text-5xl font-black text-white leading-tight">
+          <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
             Years of shipping<br />
             <span className="text-yellow-300">real products</span>
           </p>
         </div>
 
-        <div style={{ animation: "slideUp 0.6s ease-out 0.6s both" }} className="flex flex-col items-center gap-4 mt-4">
-          <div className="bg-white/20 backdrop-blur-sm border border-white/20 rounded-2xl px-8 py-5 text-center">
-            <p className="text-white font-bold text-lg">Sr. Software Engineer</p>
+        <div style={{ animation: "slideUp 0.6s ease-out 0.6s both" }} className="flex flex-col items-center gap-4">
+          <div className="bg-white/20 backdrop-blur-sm border border-white/20 rounded-2xl px-6 sm:px-8 py-4 sm:py-5 text-center">
+            <p className="text-white font-bold text-base sm:text-lg">Sr. Software Engineer</p>
             <p className="text-white/70 text-sm mt-1">Ahmedabad, Gujarat</p>
             <p className="text-yellow-300 text-sm font-semibold mt-1">Jan 2022 → Present</p>
           </div>
@@ -257,22 +257,22 @@ function LanguagesSlide() {
         style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-md px-8 flex flex-col gap-5">
+      <div className="relative z-10 w-full max-w-md px-5 sm:px-8 flex flex-col gap-4">
         <div style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }} className="text-center">
-          <p className="text-indigo-400 text-xs font-bold tracking-[0.3em] uppercase mb-2">Your Top Languages</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white">You coded in</h2>
-          <h2 className="text-4xl md:text-5xl font-black text-indigo-400">6 languages</h2>
+          <p className="text-indigo-400 text-xs font-bold tracking-[0.3em] uppercase mb-1">Your Top Languages</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">You coded in</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-indigo-400">6 languages</h2>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           {languages.map((lang, i) => (
             <div
               key={lang.name}
               className="flex items-center gap-3"
               style={{ animation: `slideUp 0.5s ease-out ${0.2 + i * 0.1}s both` }}
             >
-              <span className="text-white font-bold text-sm w-24 shrink-0">{lang.name}</span>
-              <div className="flex-1 bg-white/10 rounded-full h-3 overflow-hidden">
+              <span className="text-white font-bold text-sm w-20 sm:w-24 shrink-0">{lang.name}</span>
+              <div className="flex-1 bg-white/10 rounded-full h-2.5 overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-1000"
                   style={{
@@ -287,7 +287,7 @@ function LanguagesSlide() {
           ))}
         </div>
 
-        <div style={{ animation: "fadeIn 0.5s ease-out 0.9s both" }} className="text-center space-y-3">
+        <div style={{ animation: "fadeIn 0.5s ease-out 0.9s both" }} className="text-center space-y-2">
           <p className="text-white/40 text-xs">+ JQuery, Angular, ASP.NET Core, MSSQL</p>
           <div className="flex items-center justify-center gap-2 flex-wrap">
             <span className="text-indigo-300 text-xs font-semibold tracking-wider uppercase">AI Tools</span>
@@ -343,10 +343,10 @@ function ProjectsSlide() {
         style={{ background: "radial-gradient(circle, #f97316 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-md px-6 flex flex-col gap-6">
+      <div className="relative z-10 w-full max-w-md px-5 sm:px-6 flex flex-col gap-5">
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }} className="text-center">
           <p className="text-orange-400 text-xs font-bold tracking-[0.3em] uppercase mb-2">Projects Shipped</p>
-          <h2 className="text-5xl md:text-6xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight">
             3 products.<br />
             <span className="text-orange-400">Real impact.</span>
           </h2>
@@ -356,16 +356,16 @@ function ProjectsSlide() {
           {projects.map((p, i) => (
             <div
               key={p.name}
-              className="project-card bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-4"
+              className="project-card bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-3"
               style={{ animation: `slideUp 0.5s ease-out ${0.2 + i * 0.15}s both` }}
             >
-              <div className="text-3xl shrink-0">{p.icon}</div>
+              <div className="text-2xl sm:text-3xl shrink-0">{p.icon}</div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-sm leading-tight truncate">{p.name}</p>
+                <p className="text-white font-bold text-sm leading-tight">{p.name}</p>
                 <p className="text-white/40 text-xs mt-0.5 truncate">{p.tools}</p>
               </div>
               <span
-                className="text-xs font-semibold px-2 py-1 rounded-full shrink-0"
+                className="text-xs font-semibold px-2 py-1 rounded-full shrink-0 whitespace-nowrap"
                 style={{ backgroundColor: `${p.color}20`, color: p.color, border: `1px solid ${p.color}40` }}
               >
                 {p.tag}
@@ -399,37 +399,37 @@ function CertificationsSlide() {
         style={{ background: "radial-gradient(circle, #38bdf8 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-md px-6 flex flex-col gap-5">
+      <div className="relative z-10 w-full max-w-md px-5 sm:px-6 flex flex-col gap-4">
         <div style={{ animation: "slideUp 0.5s ease-out 0.1s both" }} className="text-center">
           <p className="text-sky-300 text-xs font-bold tracking-[0.3em] uppercase mb-2">Certifications</p>
-          <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
             Azure certified.<br />
             <span className="text-sky-300">Three times.</span>
           </h2>
-          <p className="text-white/50 text-sm mt-2">6 certifications total</p>
+          <p className="text-white/50 text-sm mt-1">6 certifications total</p>
         </div>
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2">
           {certs.map((c, i) => (
             <div
               key={c.name}
-              className={`flex items-center gap-3 rounded-xl p-3 ${
+              className={`flex items-center gap-3 rounded-xl p-2.5 sm:p-3 ${
                 c.highlight
                   ? "bg-sky-400/20 border border-sky-400/40"
                   : "bg-white/5 border border-white/10"
               }`}
               style={{ animation: `slideUp 0.5s ease-out ${0.2 + i * 0.1}s both` }}
             >
-              <span className="text-xl">{c.icon}</span>
-              <div className="flex-1">
-                <p className={`text-sm font-semibold ${c.highlight ? "text-white" : "text-white/70"}`}>
+              <span className="text-lg sm:text-xl">{c.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className={`text-xs sm:text-sm font-semibold leading-snug ${c.highlight ? "text-white" : "text-white/70"}`}>
                   {c.name}
                 </p>
               </div>
-              <span className={`text-xs font-bold ${c.highlight ? "text-sky-300" : "text-white/30"}`}>
+              <span className={`text-xs font-bold shrink-0 ${c.highlight ? "text-sky-300" : "text-white/30"}`}>
                 {c.year}
               </span>
-              {c.highlight && <div className="w-2 h-2 rounded-full bg-sky-400 ping-slow" />}
+              {c.highlight && <div className="w-2 h-2 rounded-full bg-sky-400 ping-slow shrink-0" />}
             </div>
           ))}
         </div>
@@ -499,19 +499,19 @@ function TechArsenalSlide() {
         style={{ background: "radial-gradient(circle, #22c55e 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-lg px-5 flex flex-col gap-4">
+      <div className="relative z-10 w-full max-w-lg px-4 sm:px-5 flex flex-col gap-3">
         <div style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }} className="text-center">
           <p className="text-white/40 text-xs font-bold tracking-[0.3em] uppercase mb-1">Built with</p>
-          <h2 className="text-3xl md:text-4xl font-black text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
             Tech <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #a855f7, #38bdf8)" }}>Arsenal</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-2 gap-2">
           {arsenal.map((group, i) => (
             <div
               key={group.category}
-              className="rounded-2xl p-3 flex flex-col gap-2"
+              className="rounded-xl p-2.5 sm:p-3 flex flex-col gap-1.5"
               style={{
                 background: group.bg,
                 border: `1px solid ${group.border}`,
@@ -525,7 +525,7 @@ function TechArsenalSlide() {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-white/80 text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10"
+                    className="text-white/80 text-[10px] sm:text-xs px-1.5 py-0.5 rounded-full bg-white/5 border border-white/10"
                   >
                     {skill}
                   </span>
@@ -552,35 +552,35 @@ function ContactSlide() {
         style={{ background: "radial-gradient(circle, #9333ea 0%, transparent 60%)" }}
       />
 
-      <div className="relative z-10 flex flex-col items-center text-center px-8 gap-8">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 gap-6">
         <div style={{ animation: "fadeIn 0.5s ease-out 0.1s both" }}>
           <p className="text-[#1DB954] text-xs font-bold tracking-[0.3em] uppercase">That&apos;s a wrap</p>
         </div>
 
         <div style={{ animation: "slideUp 0.6s ease-out 0.2s both" }}>
-          <h2 className="text-5xl md:text-7xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white leading-tight">
             Let&apos;s build<br />
             <span style={{ color: "#1DB954" }}>something.</span>
           </h2>
         </div>
 
-        <div style={{ animation: "slideUp 0.6s ease-out 0.4s both" }} className="flex flex-col gap-3 w-full max-w-sm">
+        <div style={{ animation: "slideUp 0.6s ease-out 0.4s both" }} className="flex flex-col gap-3 w-full max-w-xs sm:max-w-sm">
           <a
             href="mailto:parth55610@gmail.com"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
           >
             <span className="text-2xl">📧</span>
-            <div>
+            <div className="min-w-0">
               <p className="text-white/40 text-xs uppercase tracking-wider">Email</p>
-              <p className="text-white font-semibold text-sm">parth55610@gmail.com</p>
+              <p className="text-white font-semibold text-sm truncate">parth55610@gmail.com</p>
             </div>
           </a>
 
           <a
             href="tel:+919429913616"
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-left hover:bg-white/10 transition-colors"
+            className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl px-5 sm:px-6 py-4 text-left hover:bg-white/10 transition-colors"
           >
             <span className="text-2xl">📱</span>
             <div>
