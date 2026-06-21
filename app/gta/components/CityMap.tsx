@@ -53,6 +53,12 @@ export default function CityMap({
         style={{ display: "block" }}
         onClick={() => onSelect(null)}
       >
+        <defs>
+          <pattern id="scanlines" x="0" y="0" width="1" height="6" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="1" height="3" fill="rgba(0,0,0,0.04)" />
+          </pattern>
+        </defs>
+
         {/* 1. Background */}
         <rect x="0" y="0" width="900" height="560" fill="#080814" />
 
@@ -104,11 +110,6 @@ export default function CityMap({
           fill="url(#scanlines)"
           style={{ pointerEvents: "none" }}
         />
-        <defs>
-          <pattern id="scanlines" x="0" y="0" width="1" height="6" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="1" height="3" fill="rgba(0,0,0,0.04)" />
-          </pattern>
-        </defs>
 
         {/* 6. Markers */}
         {MARKERS.map((m) => {
