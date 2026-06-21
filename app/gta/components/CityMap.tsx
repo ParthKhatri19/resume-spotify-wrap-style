@@ -113,19 +113,19 @@ export default function CityMap({
           />
         ))}
 
-        {/* 3. Roads — horizontal */}
+        {/* 3. Roads — horizontal (7px asphalt rects) */}
         {[60, 140, 220, 300, 380, 460].map((y) => (
-          <line key={`h${y}`} x1="0" y1={y} x2="650" y2={y}
-            stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+          <rect key={`h${y}`} x="0" y={y - 3.5} width="650" height="7" fill="#131323" />
         ))}
-        {/* 3. Roads — vertical */}
+        {/* 3. Roads — vertical (7px asphalt rects) */}
         {[90, 200, 310, 420, 535].map((x) => (
-          <line key={`v${x}`} x1={x} y1="0" x2={x} y2="560"
-            stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+          <rect key={`v${x}`} x={x - 3.5} y="0" width="7" height="560" fill="#131323" />
         ))}
-        {/* 3. Highway (diagonal) */}
-        <line x1="0" y1="330" x2="640" y2="40"
-          stroke="rgba(255,255,255,0.18)" strokeWidth="2.5" />
+        {/* 3. Highway — dual carriageway with yellow median */}
+        <line x1="-2" y1="334" x2="638" y2="44" stroke="#131323" strokeWidth="7" />
+        <line x1="2"  y1="326" x2="642" y2="36" stroke="#131323" strokeWidth="7" />
+        <line x1="0"  y1="330" x2="640" y2="40"
+          stroke="rgba(255,215,0,0.28)" strokeWidth="1.5" strokeDasharray="10,7" />
 
         {/* 4. Ocean polygon */}
         <polygon
