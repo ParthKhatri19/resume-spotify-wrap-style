@@ -29,6 +29,15 @@ const CITY_BLOCKS = [
   { x: 207, y: 465, w: 95, h: 87 },
 ];
 
+const DISTRICT_ZONES = [
+  { id: "skills",     color: "#00F5FF", points: "0,0 200,0 200,220 0,220",                labelX: 100, labelY: 110 },
+  { id: "education",  color: "#FFD700", points: "200,0 535,0 535,220 200,220",             labelX: 367, labelY: 110 },
+  { id: "contact",    color: "#1DB954", points: "535,0 670,0 670,300 535,300",             labelX: 602, labelY: 150 },
+  { id: "experience", color: "#FF6B35", points: "200,220 535,220 535,380 200,380",         labelX: 367, labelY: 300 },
+  { id: "projects",   color: "#7B2FBE", points: "0,220 200,220 200,560 0,560",            labelX: 100, labelY: 390 },
+  { id: "about",      color: "#FF006E", points: "630,0 700,0 715,140 695,280 725,420 705,560 620,560", labelX: 665, labelY: 390 },
+] as const;
+
 export default function CityMap({
   selectedId,
   onSelect,
@@ -61,6 +70,37 @@ export default function CityMap({
 
         {/* 1. Background */}
         <rect x="0" y="0" width="900" height="560" fill="#080814" />
+
+        {/* 1b. District zones */}
+        {DISTRICT_ZONES.map((zone) => {
+          const isZoneSelected = zone.id === selectedId;
+          const isZoneHovered  = zone.id === hoveredId;
+          const district = MARKERS.find((m) => m.id === zone.id)?.district ?? "";
+          return (
+            <g key={zone.id} style={{ pointerEvents: "none" }}>
+              <polygon
+                points={zone.points}
+                fill={zone.color}
+                opacity={isZoneSelected ? 0.09 : isZoneHovered ? 0.065 : 0.04}
+                style={{ transition: "opacity 0.3s ease" }}
+              />
+              <text
+                x={zone.labelX}
+                y={zone.labelY}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill={zone.color}
+                opacity={isZoneSelected ? 0.08 : 0.03}
+                fontSize="28"
+                fontFamily="var(--font-bebas)"
+                letterSpacing="4"
+                style={{ userSelect: "none", transition: "opacity 0.3s ease" }}
+              >
+                {district}
+              </text>
+            </g>
+          );
+        })}
 
         {/* 2. City blocks */}
         {CITY_BLOCKS.map((b, i) => (
