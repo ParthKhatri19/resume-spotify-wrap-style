@@ -21,7 +21,7 @@ const CONTACTS = [
   { icon: "📧", label: "EMAIL",    value: "parth55610@gmail.com",                         href: "mailto:parth55610@gmail.com",                       color: "#1DB954", disabled: false },
   { icon: "📞", label: "PHONE",    value: "+91 94299 13616",                              href: "tel:+919429913616",                                 color: "#00F5FF", disabled: false },
   { icon: "💼", label: "LINKEDIN", value: "parth-khatri-398216138",                       href: "https://www.linkedin.com/in/parth-khatri-398216138", color: "#0A66C2", disabled: false },
-  { icon: "🐙", label: "GITHUB",   value: "Coming soon",                                  href: "#",                                                 color: "#808080", disabled: true  },
+  { icon: "🐙", label: "GITHUB",   value: "ParthKhatri19",                               href: "https://github.com/ParthKhatri19",                  color: "#e6edf3", disabled: false },
 ];
 
 export default function ContactPanel() {
