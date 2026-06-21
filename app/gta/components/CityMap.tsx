@@ -144,6 +144,66 @@ export default function CityMap({
             stroke="rgba(0,245,255,0.06)" strokeWidth="1" />
         ))}
 
+        {/* 4b. Landmark icons */}
+        <g style={{ pointerEvents: "none" }} opacity="0.45">
+          {/* Circuit chip — SKILLS ZONE (cx=180, cy=160) */}
+          <g transform="translate(178,132)">
+            <rect x="-8" y="-8" width="16" height="16" fill="none" stroke="#00F5FF" strokeWidth="1.5" rx="2" />
+            <circle cx="0" cy="0" r="2.5" fill="#00F5FF" />
+            <line x1="-12" y1="-4" x2="-8" y2="-4" stroke="#00F5FF" strokeWidth="1" />
+            <line x1="-12" y1="4"  x2="-8" y2="4"  stroke="#00F5FF" strokeWidth="1" />
+            <line x1="8"  y1="-4" x2="12" y2="-4"  stroke="#00F5FF" strokeWidth="1" />
+            <line x1="8"  y1="4"  x2="12" y2="4"   stroke="#00F5FF" strokeWidth="1" />
+            <line x1="-4" y1="-12" x2="-4" y2="-8" stroke="#00F5FF" strokeWidth="1" />
+            <line x1="4"  y1="-12" x2="4"  y2="-8" stroke="#00F5FF" strokeWidth="1" />
+          </g>
+
+          {/* Graduation cap — VICE ACADEMY (cx=440, cy=130) */}
+          <g transform="translate(445,100)">
+            <polygon points="0,-14 14,-7 0,0 -14,-7" fill="#FFD700" />
+            <line x1="14" y1="-7" x2="14" y2="4"   stroke="#FFD700" strokeWidth="1.5" />
+            <circle cx="14" cy="6" r="2" fill="#FFD700" />
+          </g>
+
+          {/* Signal tower — IFRUIT NETWORK (cx=580, cy=210) */}
+          <g transform="translate(562,182)">
+            <line x1="0"   y1="-20" x2="0"  y2="8"  stroke="#1DB954" strokeWidth="1.5" />
+            <line x1="-9"  y1="-4"  x2="9"  y2="-4" stroke="#1DB954" strokeWidth="1.5" />
+            <line x1="-6"  y1="-11" x2="6"  y2="-11" stroke="#1DB954" strokeWidth="1" />
+            <line x1="-11" y1="8"   x2="11" y2="8"  stroke="#1DB954" strokeWidth="2" />
+            <path d="M-13,-18 Q-19,-10 -13,-2" fill="none" stroke="#1DB954" strokeWidth="1" opacity="0.6" />
+            <path d="M13,-18 Q19,-10 13,-2"   fill="none" stroke="#1DB954" strokeWidth="1" opacity="0.6" />
+          </g>
+
+          {/* Crosshair target — MISSION DISTRICT (cx=320, cy=280) */}
+          <g transform="translate(318,258)">
+            <circle cx="0" cy="0" r="10" fill="none" stroke="#FF6B35" strokeWidth="1.5" />
+            <circle cx="0" cy="0" r="3.5" fill="none" stroke="#FF6B35" strokeWidth="1" />
+            <line x1="0"   y1="-15" x2="0"   y2="-11" stroke="#FF6B35" strokeWidth="1.5" />
+            <line x1="0"   y1="11"  x2="0"   y2="15"  stroke="#FF6B35" strokeWidth="1.5" />
+            <line x1="-15" y1="0"   x2="-11" y2="0"   stroke="#FF6B35" strokeWidth="1.5" />
+            <line x1="11"  y1="0"   x2="15"  y2="0"   stroke="#FF6B35" strokeWidth="1.5" />
+          </g>
+
+          {/* Skull — HEIST QUARTER (cx=140, cy=340) */}
+          <g transform="translate(142,315)">
+            <circle cx="0" cy="-7" r="9" fill="none" stroke="#7B2FBE" strokeWidth="1.5" />
+            <circle cx="-3" cy="-8" r="2" fill="#7B2FBE" />
+            <circle cx="3"  cy="-8" r="2" fill="#7B2FBE" />
+            <rect x="-6" y="1"   width="3.5" height="3.5" fill="#7B2FBE" rx="0.5" />
+            <rect x="-1" y="1"   width="3.5" height="3.5" fill="#7B2FBE" rx="0.5" />
+            <rect x="4"  y="1"   width="3.5" height="3.5" fill="#7B2FBE" rx="0.5" />
+          </g>
+
+          {/* Palm tree — VICE CITY BEACH (cx=680, cy=420) */}
+          <g transform="translate(653,375)">
+            <rect x="-1.5" y="-14" width="3" height="16" fill="#FF006E" rx="1" />
+            <path d="M0,-14 Q-11,-23 -15,-17 Q-9,-13 0,-14" fill="#FF006E" />
+            <path d="M0,-14 Q11,-23 15,-17  Q9,-13  0,-14" fill="#FF006E" />
+            <path d="M0,-14 Q-3,-25 0,-27   Q3,-25  0,-14" fill="#FF006E" />
+          </g>
+        </g>
+
         {/* 5. Scanline overlay */}
         <rect
           x="0" y="0" width="900" height="560"
