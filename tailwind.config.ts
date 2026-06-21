@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-circular)", "system-ui", "sans-serif"],
+        bebas: ["var(--font-bebas)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
       animation: {
         "count-up": "countUp 1s ease-out forwards",
