@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { MARKERS } from "./markers";
 import HudNavbar from "./components/HudNavbar";
 import CityMap from "./components/CityMap";
@@ -9,17 +9,21 @@ function EntryAnimation({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
     const interval = setInterval(() => {
       setProgress((p) => {
         if (p >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 200);
+          timeoutId = setTimeout(onComplete, 200);
           return 100;
         }
         return p + 2;
       });
     }, 30);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, [onComplete]);
 
   return (
@@ -59,6 +63,7 @@ export default function GTAPage() {
 
   const handleSelect = (id: string | null) => setSelectedId(id);
   const handleClose = () => setSelectedId(null);
+  const handleAnimationComplete = useCallback(() => setLoaded(true), []);
 
   const selectedDistrict =
     selectedId ? (MARKERS.find((m) => m.id === selectedId)?.district ?? null) : null;
@@ -68,7 +73,7 @@ export default function GTAPage() {
       className="relative w-screen h-screen overflow-hidden"
       style={{ background: "var(--gta-bg)" }}
     >
-      {!loaded && <EntryAnimation onComplete={() => setLoaded(true)} />}
+      {!loaded && <EntryAnimation onComplete={handleAnimationComplete} />}
       {loaded && (
         <div
           className="relative w-full h-full"

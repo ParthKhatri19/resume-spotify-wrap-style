@@ -36,7 +36,7 @@ export default function HudNavbar({
       <button
         onClick={onRadarClick}
         className="flex items-center gap-2 opacity-80 hover:opacity-100 transition-opacity"
-        aria-label="Close panel"
+        aria-label="Return to map"
       >
         <RadarIcon />
         <span className="hidden sm:block font-bebas text-xs tracking-[0.25em] text-white/50 uppercase">
