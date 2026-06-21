@@ -86,7 +86,7 @@ export default function ContactPanel() {
           animation: "slideUp 0.5s ease-out 0.55s both",
         }}
       >
-        Let's build something.
+        {"Let's build something."}
       </p>
       <p
         className="font-inter text-white/20 text-[10px] text-center tracking-widest"
