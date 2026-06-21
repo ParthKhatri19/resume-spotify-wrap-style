@@ -1,84 +1,86 @@
 "use client";
 import { useState, useEffect } from "react";
-import { SECTIONS } from "./constants";
+import { MARKERS } from "./markers";
 import HudNavbar from "./components/HudNavbar";
-import DistrictMap from "./components/DistrictMap";
-import LoadingScreen from "./components/LoadingScreen";
-import MissionLog from "./components/MissionLog";
-import Attributes from "./components/Attributes";
-import HeistBoard from "./components/HeistBoard";
-import SafeHouse from "./components/SafeHouse";
-import IFruitPhone from "./components/IFruitPhone";
+import CityMap from "./components/CityMap";
+import DetailPanel from "./components/DetailPanel";
 
-export default function GTAPage() {
-  const [activeSection, setActiveSection] = useState<string>("hero");
-  const [mapOpen, setMapOpen] = useState(false);
+function EntryAnimation({ onComplete }: { onComplete: () => void }) {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: "-52px 0px 0px 0px" }
-    );
-
-    SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "m" || e.key === "M") setMapOpen((v) => !v);
-      if (e.key === "Escape") setMapOpen(false);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
-  const navigateTo = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-    setMapOpen(false);
-  };
+    const interval = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          clearInterval(interval);
+          setTimeout(onComplete, 200);
+          return 100;
+        }
+        return p + 2;
+      });
+    }, 30);
+    return () => clearInterval(interval);
+  }, [onComplete]);
 
   return (
-    <div className="relative" style={{ background: "var(--gta-bg)", fontFamily: "var(--font-inter)" }}>
-      <HudNavbar
-        activeSection={activeSection}
-        sections={SECTIONS}
-        onMapOpen={() => setMapOpen(true)}
-      />
-      <DistrictMap
-        isOpen={mapOpen}
-        activeSection={activeSection}
-        onClose={() => setMapOpen(false)}
-        onNavigate={navigateTo}
-      />
-      <section id="hero">
-        <LoadingScreen />
-      </section>
-      <section id="mission-log">
-        <MissionLog />
-      </section>
-      <section id="attributes">
-        <Attributes />
-      </section>
-      <section id="heist-board">
-        <HeistBoard />
-      </section>
-      <section id="safe-house">
-        <SafeHouse />
-      </section>
-      <section id="ifruit-phone">
-        <IFruitPhone />
-      </section>
+    <div
+      className="fixed inset-0 z-[200] flex flex-col items-center justify-center"
+      style={{ background: "var(--gta-bg)" }}
+    >
+      <p
+        className="font-bebas text-2xl tracking-[0.3em] mb-6"
+        style={{ color: "var(--gta-pink)", textShadow: "0 0 20px rgba(255,0,110,0.6)" }}
+      >
+        LOADING VICE CITY...
+      </p>
+      <div
+        className="w-64 h-2 rounded-full overflow-hidden"
+        style={{ background: "rgba(255,255,255,0.1)" }}
+      >
+        <div
+          className="h-full rounded-full transition-all duration-75"
+          style={{
+            width: `${progress}%`,
+            background: "var(--gta-pink)",
+            boxShadow: "0 0 8px rgba(255,0,110,0.8)",
+          }}
+        />
+      </div>
+      <p className="font-inter text-white/25 text-xs tracking-widest mt-4 uppercase">
+        {progress < 100 ? "Initializing..." : "Ready"}
+      </p>
+    </div>
+  );
+}
+
+export default function GTAPage() {
+  const [loaded, setLoaded] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const handleSelect = (id: string | null) => setSelectedId(id);
+  const handleClose = () => setSelectedId(null);
+
+  const selectedDistrict =
+    selectedId ? (MARKERS.find((m) => m.id === selectedId)?.district ?? null) : null;
+
+  return (
+    <div
+      className="relative w-screen h-screen overflow-hidden"
+      style={{ background: "var(--gta-bg)" }}
+    >
+      {!loaded && <EntryAnimation onComplete={() => setLoaded(true)} />}
+      {loaded && (
+        <div
+          className="relative w-full h-full"
+          style={{ animation: "fadeIn 0.5s ease-out both" }}
+        >
+          <HudNavbar selectedDistrict={selectedDistrict} onRadarClick={handleClose} />
+          <div className="absolute inset-0" style={{ top: "52px" }}>
+            <CityMap selectedId={selectedId} onSelect={handleSelect} />
+          </div>
+          <DetailPanel selectedId={selectedId} onClose={handleClose} />
+        </div>
+      )}
     </div>
   );
 }
