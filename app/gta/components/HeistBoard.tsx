@@ -76,7 +76,6 @@ export default function HeistBoard() {
               style={{
                 background: `${h.glowColor}0a`,
                 border: `1px solid ${h.glowColor}25`,
-                transform: `rotate(${h.rotate})`,
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
                 animation: `slideUp 0.6s cubic-bezier(0.22,1,0.36,1) ${0.2 + i * 0.12}s both`,
               }}

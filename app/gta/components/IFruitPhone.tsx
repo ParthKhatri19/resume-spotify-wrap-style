@@ -42,7 +42,7 @@ const CONTACTS = [
     label: "GITHUB",
     value: "Coming soon",
     href: "#",
-    color: "rgba(255,255,255,0.3)",
+    color: "#808080",
   },
 ];
 

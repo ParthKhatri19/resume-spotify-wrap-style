@@ -58,7 +58,6 @@ export default function GTAPage() {
       <DistrictMap
         isOpen={mapOpen}
         activeSection={activeSection}
-        sections={SECTIONS}
         onClose={() => setMapOpen(false)}
         onNavigate={navigateTo}
       />

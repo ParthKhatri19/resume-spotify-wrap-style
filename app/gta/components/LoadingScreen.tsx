@@ -143,7 +143,7 @@ export default function LoadingScreen() {
         {/* Scroll hint */}
         {loaded && (
           <p
-            className="font-inter text-white/30 text-xs tracking-[0.3em] uppercase gta-blink"
+            className="font-inter text-white/30 text-xs tracking-[0.3em] uppercase"
             style={{ animation: "blink 1.4s ease-in-out infinite" }}
           >
             ↓ SCROLL TO EXPLORE

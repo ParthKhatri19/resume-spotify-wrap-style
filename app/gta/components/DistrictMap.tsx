@@ -3,7 +3,6 @@
 interface Props {
   isOpen: boolean;
   activeSection: string;
-  sections: readonly { id: string; area: string }[];
   onClose: () => void;
   onNavigate: (id: string) => void;
 }
