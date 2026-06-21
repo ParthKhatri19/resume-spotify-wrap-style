@@ -38,6 +38,19 @@ const DISTRICT_ZONES = [
   { id: "about",      color: "#FF006E", points: "630,0 700,0 715,140 695,280 725,420 705,560 620,560", labelX: 665, labelY: 390 },
 ] as const;
 
+function getBlockStyle(b: { x: number; y: number }) {
+  if (b.x >= 310 && b.y < 145) {
+    // Downtown — upper-centre/right, brighter
+    return { fill: "rgba(255,255,255,0.07)", stroke: "rgba(255,255,255,0.13)" };
+  }
+  if (b.y >= 380) {
+    // Industrial — lower rows, warm tint
+    return { fill: "rgba(255,165,60,0.04)", stroke: "rgba(255,165,60,0.10)" };
+  }
+  // Suburban default
+  return { fill: "rgba(255,255,255,0.03)", stroke: "rgba(255,255,255,0.07)" };
+}
+
 export default function CityMap({
   selectedId,
   onSelect,
@@ -102,16 +115,50 @@ export default function CityMap({
           );
         })}
 
-        {/* 2. City blocks */}
+        {/* 2a. City block shadows */}
         {CITY_BLOCKS.map((b, i) => (
-          <rect
-            key={i}
-            x={b.x} y={b.y} width={b.w} height={b.h}
-            fill="rgba(255,255,255,0.03)"
-            stroke="rgba(255,255,255,0.06)"
-            strokeWidth="0.5"
-          />
+          <rect key={`s${i}`} x={b.x + 2} y={b.y + 2} width={b.w} height={b.h}
+            fill="rgba(0,0,0,0.28)" />
         ))}
+        {/* 2b. City blocks — downtown / industrial / suburban variety */}
+        {CITY_BLOCKS.map((b, i) => {
+          const style = getBlockStyle(b);
+          return (
+            <rect key={i} x={b.x} y={b.y} width={b.w} height={b.h}
+              fill={style.fill} stroke={style.stroke} strokeWidth="0.5" />
+          );
+        })}
+        {/* 2c. Parks / green spaces */}
+        <g style={{ pointerEvents: "none" }}>
+          {/* Bayfront Park — centre-right between districts */}
+          <rect x="430" y="307" width="98" height="58" rx="2"
+            fill="rgba(29,185,84,0.09)" stroke="rgba(29,185,84,0.16)" strokeWidth="0.5" />
+          <line x1="435" y1="336" x2="525" y2="336" stroke="rgba(29,185,84,0.18)" strokeWidth="0.5" />
+          <line x1="479" y1="310" x2="479" y2="363" stroke="rgba(29,185,84,0.18)" strokeWidth="0.5" />
+          <circle cx="445" cy="320" r="3" fill="rgba(29,185,84,0.18)" />
+          <circle cx="514" cy="320" r="3" fill="rgba(29,185,84,0.18)" />
+          <circle cx="445" cy="352" r="3" fill="rgba(29,185,84,0.18)" />
+          <circle cx="514" cy="352" r="3" fill="rgba(29,185,84,0.18)" />
+          <text x="479" y="337" textAnchor="middle" dominantBaseline="middle"
+            fill="rgba(29,185,84,0.20)" fontSize="5.5" fontFamily="var(--font-bebas)"
+            letterSpacing="1" style={{ userSelect: "none" }}>
+            BAYFRONT PARK
+          </text>
+
+          {/* Vice Park — upper left, Skills Zone area */}
+          <rect x="7" y="147" width="74" height="60" rx="2"
+            fill="rgba(29,185,84,0.08)" stroke="rgba(29,185,84,0.14)" strokeWidth="0.5" />
+          <line x1="12" y1="152" x2="78" y2="204" stroke="rgba(29,185,84,0.15)" strokeWidth="0.5" />
+          <circle cx="22" cy="164" r="2.5" fill="rgba(29,185,84,0.20)" />
+          <circle cx="62" cy="192" r="2.5" fill="rgba(29,185,84,0.20)" />
+
+          {/* Riverside Strip — thin park near beach boundary */}
+          <rect x="539" y="308" width="28" height="68" rx="1"
+            fill="rgba(29,185,84,0.06)" stroke="rgba(29,185,84,0.11)" strokeWidth="0.5" />
+          <circle cx="553" cy="322" r="2.5" fill="rgba(29,185,84,0.18)" />
+          <circle cx="553" cy="344" r="2.5" fill="rgba(29,185,84,0.18)" />
+          <circle cx="553" cy="366" r="2.5" fill="rgba(29,185,84,0.18)" />
+        </g>
 
         {/* 3. Roads — horizontal (7px asphalt rects) */}
         {[60, 140, 220, 300, 380, 460].map((y) => (
