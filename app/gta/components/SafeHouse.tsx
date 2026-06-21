@@ -1,7 +1,7 @@
 "use client";
 
 const CERTS = [
-  { name: "DevOps Engineer Expert (AZ-400)", year: "2024", icon: "🚀", tier: "azure" },
+  { name: "DevOps Engineer Expert (AZ-400)", year: "2025", icon: "🚀", tier: "azure" },
   { name: "Azure Developer Associate",       year: "2024", icon: "⚡", tier: "azure" },
   { name: "Azure Fundamentals (AZ-900)",     year: "2024", icon: "☁️", tier: "azure" },
   { name: "Python for Everybody",            year: "2021", icon: "🐍", tier: "standard" },

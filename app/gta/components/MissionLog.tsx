@@ -94,7 +94,6 @@ export default function MissionLog() {
                 <p className="font-bebas text-2xl sm:text-3xl text-white tracking-wide leading-tight">
                   SR. SOFTWARE ENGINEER
                 </p>
-                <p className="font-inter text-white/50 text-sm mt-0.5">Denali Software Solution</p>
               </div>
               {/* Difficulty */}
               <div className="flex flex-col items-end gap-1 shrink-0">
