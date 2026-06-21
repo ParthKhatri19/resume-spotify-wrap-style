@@ -79,6 +79,11 @@ export default function CityMap({
           <pattern id="scanlines" x="0" y="0" width="1" height="6" patternUnits="userSpaceOnUse">
             <rect x="0" y="0" width="1" height="3" fill="rgba(0,0,0,0.04)" />
           </pattern>
+          <linearGradient id="oceanDepth" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="#082030" />
+            <stop offset="50%"  stopColor="#051525" />
+            <stop offset="100%" stopColor="#030d1c" />
+          </linearGradient>
         </defs>
 
         {/* 1. Background */}
@@ -174,15 +179,15 @@ export default function CityMap({
         <line x1="0"  y1="330" x2="640" y2="40"
           stroke="rgba(255,215,0,0.28)" strokeWidth="1.5" strokeDasharray="10,7" />
 
-        {/* 4. Ocean polygon */}
-        <polygon
-          points="700,0 720,140 700,280 730,420 710,560 900,560 900,0"
-          fill="#050f1a"
+        {/* 4. Ocean — curved coastline with depth gradient */}
+        <path
+          d="M 700,0 C 715,50 725,90 720,140 C 718,185 705,235 700,280 C 700,325 728,370 730,420 C 732,465 720,510 710,560 L 900,560 L 900,0 Z"
+          fill="url(#oceanDepth)"
         />
-        {/* 4. Beach strip */}
-        <polygon
-          points="675,0 695,140 675,280 705,420 685,560 710,560 730,420 700,280 720,140 700,0"
-          fill="rgba(180,140,80,0.12)"
+        {/* 4. Beach strip — curved */}
+        <path
+          d="M 672,0 C 688,50 698,90 693,140 C 690,185 678,235 673,280 C 672,325 700,370 702,420 C 703,465 692,510 682,560 L 710,560 C 720,510 732,465 730,420 C 728,370 700,325 700,280 C 705,235 718,185 720,140 C 725,90 715,50 700,0 Z"
+          fill="rgba(180,140,80,0.15)"
         />
         {/* 4. Wave lines in ocean */}
         {[80, 160, 240, 320, 400, 480].map((y) => (
@@ -190,6 +195,17 @@ export default function CityMap({
             x1="740" y1={y} x2="880" y2={y}
             stroke="rgba(0,245,255,0.06)" strokeWidth="1" />
         ))}
+
+        {/* 4c. Dock piers — Vice City Beach */}
+        <g style={{ pointerEvents: "none" }}>
+          <rect x="708" y="374" width="34" height="4" rx="1" fill="rgba(160,110,60,0.35)" />
+          <rect x="708" y="396" width="28" height="4" rx="1" fill="rgba(160,110,60,0.35)" />
+          <rect x="708" y="418" width="32" height="4" rx="1" fill="rgba(160,110,60,0.35)" />
+          {/* Pier-end mooring lights */}
+          <rect x="740" y="372" width="2" height="8" rx="1" fill="rgba(255,200,100,0.45)" />
+          <rect x="735" y="394" width="2" height="8" rx="1" fill="rgba(255,200,100,0.45)" />
+          <rect x="738" y="416" width="2" height="8" rx="1" fill="rgba(255,200,100,0.45)" />
+        </g>
 
         {/* 4b. Landmark icons */}
         <g style={{ pointerEvents: "none" }} opacity="0.45">
