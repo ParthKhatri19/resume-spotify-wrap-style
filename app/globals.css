@@ -143,6 +143,8 @@ body {
 
 .ping-slow {
   animation: ping-slow 1.8s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 /* ── Pulse dots (IntroSlide) ─────────────────────────────────── */
